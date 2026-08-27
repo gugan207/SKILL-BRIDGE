@@ -1,18 +1,18 @@
 import { supabase } from './supabase';
 
-const API_BASE = import.meta.env.VITE_API_URL || '/api';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
 async function getAuthHeader() {
   const { data: { session } } = await supabase.auth.getSession();
   if (!session?.access_token) {
-    throw new Error('Authentication required');
+    throw new Error('Authentication required. Please log in first.');
   }
   return `Bearer ${session.access_token}`;
 }
 
 export const api = {
   async health() {
-    const res = await fetch('/health');
+    const res = await fetch('http://localhost:8000/health');
     return res.json();
   },
 
@@ -29,9 +29,15 @@ export const api = {
       body: formData,
     });
 
-    const data = await res.json();
+    let data;
+    try {
+      data = await res.json();
+    } catch {
+      data = { detail: res.statusText || 'Upload failed' };
+    }
+
     if (!res.ok) {
-      throw new Error(data.detail || 'Failed to upload resume');
+      throw new Error(data.detail || `Upload failed (${res.status})`);
     }
     return data;
   },
