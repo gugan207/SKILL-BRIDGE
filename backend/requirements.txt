@@ -15,7 +15,7 @@ pytesseract==0.3.13
 
 # NLP / Skill extraction
 spacy==3.8.7
-skillNer==1.0.4
+skillNer==1.0.3
 
 # NVIDIA NIM (OpenAI-compatible client)
 openai==1.87.0
