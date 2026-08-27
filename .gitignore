@@ -1,52 +1,36 @@
-# Environment variables (NEVER commit secrets)
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Environment & Secrets
 .env
 .env.local
-.env.production
 .env.*.local
-SKILL-BRIDGE.txt
+*.txt
+!requirements.txt
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.egg-info/
+# Build output
 dist/
 build/
-.eggs/
-*.egg
-venv/
-.venv/
-env/
-
-# Node
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Build outputs
-frontend/dist/
-backend/dist/
+*.egg-info/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
 
 # OS
 .DS_Store
 Thumbs.db
-desktop.ini
-
-# Supabase
-.supabase/
-
-# Testing
-.coverage
-htmlcov/
-.pytest_cache/
 
 # Logs
 *.log
+npm-debug.log*
+
+# Coverage
+.coverage
+htmlcov/
